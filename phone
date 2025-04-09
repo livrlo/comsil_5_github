@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ $# -lt 1 ]; then
+	echo "Usage: phone searchfor [... searchfor]"
+	echo "(You didn't tell me what you want to search for.)"
+fi
+
+search_pattern=$(echo "$*" | sed 's/ /|/g')
+
+egrep -i "^$search_pattern" mydata.txt | awk -f display.awk
